@@ -7,4 +7,5 @@
     <string name="gender">Gender</string>
     <string name="species">Species</string>
     <string name="again">Again</string>
+    <string name="not_internet_connection">Отсутствует интернет</string>
 </resources>
