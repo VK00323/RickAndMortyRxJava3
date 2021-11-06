@@ -26,7 +26,7 @@ class CharacterAdapter :
             textViewName.text = currentCharacter.name
             textViewStatus.text = currentCharacter.status
             textViewSpecies.text = currentCharacter.species
-            textViewGender.text = currentCharacter.gender
+            currentCharacter.gender.also { textViewGender.text = it }
             Picasso.get().load(currentCharacter.image).into(imageView)
         }
     }

@@ -27,8 +27,4 @@ class AppModule(private  var application: Application) {
     fun provideAppContext(): Context {
         return application.applicationContext
     }
-
-
-
-
 }
