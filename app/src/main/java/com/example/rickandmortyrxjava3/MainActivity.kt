@@ -26,21 +26,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as App).appComponent.inject(this)
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.RecyclerViewItem)
-        viewModelInit()
-        supportActionBar?.hide()
         progressBar = findViewById(R.id.progressBar)
         button = findViewById(R.id.buttonInternet)
-        (application as App).appComponent.inject(this)
+
+        viewModelInit()
     }
 
     private fun viewModelInit() {
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
         val adapter = CharacterAdapter()
         recyclerView.adapter = adapter
-
         viewModel.allCharacter()
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())

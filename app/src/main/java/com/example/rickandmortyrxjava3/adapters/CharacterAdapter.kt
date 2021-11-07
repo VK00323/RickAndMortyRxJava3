@@ -15,8 +15,10 @@ import com.squareup.picasso.Picasso
 class CharacterAdapter :
     ListAdapter<PojoResult, CharacterAdapter.CharacterViewHolder>(CharacterDiffItemCallBack) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_character,
+            parent,
+            false)
         return CharacterViewHolder(view)
     }
 
