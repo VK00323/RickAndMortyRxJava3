@@ -2,6 +2,7 @@ package com.example.rickandmortyrxjava3.di
 
 import android.app.Application
 import android.content.Context
+import com.example.rickandmortyrxjava3.CharacterViewModel
 import com.example.rickandmortyrxjava3.database.AppDatabase
 import com.example.rickandmortyrxjava3.database.CharacterDao
 import dagger.Module
@@ -26,5 +27,10 @@ class AppModule(private  var application: Application) {
     @Provides
     fun provideAppContext(): Context {
         return application.applicationContext
+    }
+
+    @Provides
+    fun provideCharacterViewModel(): CharacterViewModel{
+        return CharacterViewModel(application)
     }
 }

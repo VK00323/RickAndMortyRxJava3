@@ -16,13 +16,14 @@ import com.example.rickandmortyrxjava3.di.App
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: CharacterViewModel
+    @Inject
+    lateinit var viewModel: CharacterViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private var checkListEmptyOrNot = false
-
     private lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.RecyclerViewItem)
         progressBar = findViewById(R.id.progressBar)
         button = findViewById(R.id.buttonInternet)
-
         viewModelInit()
     }
 
@@ -90,7 +90,6 @@ class MainActivity : AppCompatActivity() {
                     return true
                 else if (it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                     return true
-
                 }
             }
         }

@@ -15,6 +15,7 @@ import javax.inject.Inject
 class CharacterViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
     @Inject lateinit var db: CharacterDao
+    @Inject lateinit var apiService:ApiService
 
     fun allCharacter(): Observable<List<PojoResult>> = db.getAllCharacter()
 
@@ -23,13 +24,13 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     @Inject
-    fun loadData(db: AppDatabase, apiService: ApiService) {
-        val disposable = apiService.apiGetCharacterFromPage(1)
+    fun loadData() {
+        val disposable = apiService.apiGetCharacterFromPage(PAGE)
             .map { it.results }
             .subscribeOn(Schedulers.io())
             .retry()
             .subscribe({
-                db.characterDao().insertAllCharacter(it)
+                db.insertAllCharacter(it)
             },{
             })
 
@@ -38,5 +39,8 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
 
     override fun onCleared() {
         compositeDisposable.dispose()
+    }
+    companion object{
+        const val PAGE = 1
     }
 }
